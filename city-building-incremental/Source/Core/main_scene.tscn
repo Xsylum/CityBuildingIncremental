@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq1rmfy55gg2m"]
+
+[ext_resource type="PackedScene" uid="uid://dfgxxfh7jlx76" path="res://Source/Levels/LevelObjects/GridGraph.tscn" id="1_447ir"]
+[ext_resource type="Script" uid="uid://bksioxjtbyw5o" path="res://Source/Core/MainScene.cs" id="1_henb1"]
+[ext_resource type="PackedScene" uid="uid://cxawipnhqj5at" path="res://Source/Core/Systems/ResourceManager.tscn" id="2_bpmr0"]
+[ext_resource type="PackedScene" uid="uid://cjisiyuijejrg" path="res://Source/Levels/LevelObjects/Building.tscn" id="4_henb1"]
+
+[node name="MainScene" type="Node" node_paths=PackedStringArray("resourceManager")]
+process_mode = 3
+script = ExtResource("1_henb1")
+resourceManager = NodePath("Systems/ResourceManager")
+
+[node name="Systems" type="Node" parent="."]
+
+[node name="ResourceManager" parent="Systems" node_paths=PackedStringArray("GoldValueLabel") instance=ExtResource("2_bpmr0")]
+GoldValueLabel = NodePath("../../HudLayer/HudRoot/MarginContainer/HBoxContainer/GoldValue")
+
+[node name="World" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="LevelRoot" type="Node2D" parent="World"]
+
+[node name="GridGraph" parent="World/LevelRoot" instance=ExtResource("1_447ir")]
+height = 7
+width = 5
+
+[node name="Building" parent="World/LevelRoot" instance=ExtResource("4_henb1")]
+
+[node name="Building2" parent="World/LevelRoot" instance=ExtResource("4_henb1")]
+timerAmount = 1.7
+resourceChange = 1.5
+
+[node name="EntityRoot" type="Node2D" parent="World"]
+
+[node name="Camera2D" type="Camera2D" parent="World/EntityRoot"]
+
+[node name="EffectRoot" type="Node2D" parent="World"]
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+process_mode = 1
+layer = 10
+
+[node name="HudRoot" type="Control" parent="HudLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot"]
+layout_mode = 0
+offset_right = 46.0
+offset_bottom = 23.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 20
+
+[node name="PauseRoot" type="Control" parent="PauseLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 128
+
+[node name="DebugRoot" type="Control" parent="DebugLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjisiyuijejrg"]
+
+[ext_resource type="Texture2D" uid="uid://uc6gm135b31d" path="res://icon.svg" id="1_ksm4a"]
+[ext_resource type="Script" uid="uid://bdtxfg87101mq" path="res://Source/Levels/LevelObjects/Building.cs" id="2_rly5h"]
+
+[node name="Building" type="Node2D" node_paths=PackedStringArray("resourceTimer")]
+script = ExtResource("2_rly5h")
+resourceTimer = NodePath("Timer")
+resourceChange = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ksm4a")
+
+[node name="Timer" type="Timer" parent="."]
