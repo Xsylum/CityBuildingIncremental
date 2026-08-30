@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckenafwgul6gd"]
+
+[ext_resource type="Texture2D" uid="uid://dm5yqdcispupw" path="res://Assets/WhiteSquare.png" id="1_egbjp"]
+
+[node name="CityBuildingHud" type="Node2D"]
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="background"]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 1)
+position = Vector2(-95, 107)
+scale = Vector2(1.6399999, 1.76)
+texture = ExtResource("1_egbjp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="background"]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 1)
+position = Vector2(439, 420)
+scale = Vector2(1.274, 0.2)
+texture = ExtResource("1_egbjp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="background"]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 1)
+position = Vector2(837.99994, 128.00002)
+scale = Vector2(1.0247935, 1.660556)
+texture = ExtResource("1_egbjp")
+
+[node name="Sprite2D4" type="Sprite2D" parent="background"]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 1)
+position = Vector2(454, -160)
+scale = Vector2(1.274, 0.2)
+texture = ExtResource("1_egbjp")
+
+[node name="MarginSprites" type="Node2D" parent="background"]
+
+[node name="Sprite2D" type="Sprite2D" parent="background/MarginSprites"]
+modulate = Color(0.21923605, 0.23000166, 0.2914161, 1)
+position = Vector2(180, 126)
+scale = Vector2(0.040000558, 1.6000001)
+texture = ExtResource("1_egbjp")

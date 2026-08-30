@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfgxxfh7jlx76"]
+[gd_scene load_steps=4 format=3 uid="uid://dfgxxfh7jlx76"]
 
 [ext_resource type="Script" uid="uid://fnehhwv4fy4n" path="res://Source/Levels/LevelObjects/GridGraph.cs" id="1_quvfb"]
 [ext_resource type="PackedScene" uid="uid://vbsm4auf68tu" path="res://Source/Levels/LevelObjects/GraphTile.tscn" id="2_b5di4"]
+[ext_resource type="PackedScene" uid="uid://cjisiyuijejrg" path="res://Source/Gameplay/Buildings/Base_Building.tscn" id="3_ancsg"]
 
 [node name="GridGraph" type="Node2D"]
 script = ExtResource("1_quvfb")
 graphTileScene = ExtResource("2_b5di4")
+buildingScene = ExtResource("3_ancsg")
 
 [node name="Tiles" type="Node2D" parent="."]
+
+[node name="Buildings" type="Node2D" parent="."]

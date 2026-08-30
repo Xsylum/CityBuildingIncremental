@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfgxxfh7jlx76" path="res://Source/Levels/LevelObjects/GridGraph.tscn" id="1_447ir"]
 [ext_resource type="Script" uid="uid://bksioxjtbyw5o" path="res://Source/Core/MainScene.cs" id="1_henb1"]
 [ext_resource type="PackedScene" uid="uid://cxawipnhqj5at" path="res://Source/Core/Systems/ResourceManager.tscn" id="2_bpmr0"]
-[ext_resource type="PackedScene" uid="uid://cjisiyuijejrg" path="res://Source/Levels/LevelObjects/Building.tscn" id="4_henb1"]
+[ext_resource type="PackedScene" uid="uid://ckenafwgul6gd" path="res://Source/HUDs/city_building_hud.tscn" id="4_henb1"]
 
 [node name="MainScene" type="Node" node_paths=PackedStringArray("resourceManager")]
 process_mode = 3
@@ -13,7 +13,7 @@ resourceManager = NodePath("Systems/ResourceManager")
 [node name="Systems" type="Node" parent="."]
 
 [node name="ResourceManager" parent="Systems" node_paths=PackedStringArray("GoldValueLabel") instance=ExtResource("2_bpmr0")]
-GoldValueLabel = NodePath("../../HudLayer/HudRoot/MarginContainer/HBoxContainer/GoldValue")
+GoldValueLabel = NodePath("../../HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer/GoldValue")
 
 [node name="World" type="Node2D" parent="."]
 process_mode = 1
@@ -21,14 +21,12 @@ process_mode = 1
 [node name="LevelRoot" type="Node2D" parent="World"]
 
 [node name="GridGraph" parent="World/LevelRoot" instance=ExtResource("1_447ir")]
-height = 7
-width = 5
+position = Vector2(79, -245)
+height = 10
+width = 8
 
-[node name="Building" parent="World/LevelRoot" instance=ExtResource("4_henb1")]
-
-[node name="Building2" parent="World/LevelRoot" instance=ExtResource("4_henb1")]
-timerAmount = 1.7
-resourceChange = 1.5
+[node name="CityBuildingHud" parent="World/LevelRoot" instance=ExtResource("4_henb1")]
+position = Vector2(-154, -125)
 
 [node name="EntityRoot" type="Node2D" parent="World"]
 
@@ -53,14 +51,61 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Gold:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/HBoxContainer"]
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Wood:"
+
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Stone:"
+
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Food:"
+
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Research:"
+
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 text = "0"
 

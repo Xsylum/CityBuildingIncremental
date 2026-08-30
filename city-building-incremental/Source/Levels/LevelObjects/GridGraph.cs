@@ -11,6 +11,7 @@ public partial class GridGraph : Node2D
 	public GraphTile[] tileList;
 
 	[Export] public PackedScene graphTileScene;
+	[Export] public PackedScene buildingScene;
 
 	[Export] public int height;
 	[Export] public int width;
@@ -48,6 +49,8 @@ public partial class GridGraph : Node2D
 				tileList[i * width + j] = gt;
 				buildingList[i * width + j] = null;
 
+				gt.OnTileClicked += OnTileClicked;
+
 				var transform = new Vector2((j + 0.5f) * tileOffset, (i + 0.5f) * tileOffset);
 				gt.Position = transform;
 				tileRoot.AddChild(gt);
@@ -73,5 +76,18 @@ public partial class GridGraph : Node2D
 	public Building GetTileBuilding(int index)
     {
         return buildingList[index];
+    }
+
+	public void OnTileClicked(int index)
+    {
+        var b = buildingScene.Instantiate<Building>();
+		buildingList[index] = b;
+
+		// b.outputs[0].amount = index * 2 + 1;
+		// b.TimerAmount = 4 + index * 1.4f;
+
+		b.Position = GetTile(index).Position;
+
+		GetNode("Buildings").AddChild(b);
     }
 }
