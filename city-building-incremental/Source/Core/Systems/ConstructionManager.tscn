@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://buxbww6jo5hba"]
+
+[ext_resource type="Script" uid="uid://co7p2f88p1c3a" path="res://Source/Core/Systems/ConstructionManager.cs" id="1_glnic"]
+
+[node name="ConstructionManager" type="Node"]
+script = ExtResource("1_glnic")

@@ -1,59 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://da65y6gkl3knp"]
+[gd_scene load_steps=4 format=3 uid="uid://da65y6gkl3knp"]
 
 [ext_resource type="Texture2D" uid="uid://uc6gm135b31d" path="res://icon.svg" id="1_8t4yc"]
 [ext_resource type="Script" uid="uid://bdtxfg87101mq" path="res://Source/Gameplay/Buildings/Building.cs" id="1_miga6"]
-[ext_resource type="Script" uid="uid://bhxwn4negegi0" path="res://Source/Gameplay/Buildings/MaterialOutput.cs" id="2_3nso4"]
-[ext_resource type="Script" uid="uid://cyn0cbici7ebj" path="res://Source/Gameplay/Buildings/BuildingDefinition.cs" id="3_xujsh"]
+[ext_resource type="Resource" uid="uid://cb070hup8e1ib" path="res://Source/Gameplay/Buildings/Building_Definitions/Farm_Building_Definition.tres" id="2_mwn1w"]
 
-[sub_resource type="Resource" id="Resource_3nso4"]
-script = ExtResource("2_3nso4")
-resource = 3
-metadata/_custom_type_script = "uid://bhxwn4negegi0"
-
-[sub_resource type="Resource" id="Resource_1t3w3"]
-script = ExtResource("3_xujsh")
-BuildingName = "Farm"
-Outputs = Array[ExtResource("2_3nso4")]([SubResource("Resource_3nso4")])
-metadata/_custom_type_script = "uid://cyn0cbici7ebj"
-
-[sub_resource type="CSharpScript" id="CSharpScript_8t4yc"]
-script/source = "using Godot;
-using System;
-
-public partial class FarmBuilding : Building
-{
-	[Export] float foodOutputAmount = 5.0f;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-    {
-        outputs = [new MaterialOutput(MaterialResource.Food, foodOutputAmount)];
-    }
-
-	
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
-    public override void OnResourceTimeOut()
-    {
-        throw new NotImplementedException();
-    }
-
-}
-"
-
-[node name="Farm_Building" type="Node2D" node_paths=PackedStringArray("ResourceTimer")]
+[node name="Farm_Building" type="Node2D" node_paths=PackedStringArray("ResourceTimer", "progressBar")]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_miga6")
-Definition = SubResource("Resource_1t3w3")
+Definition = ExtResource("2_mwn1w")
 ResourceTimer = NodePath("Timer")
+progressBar = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0.20392157, 1)
 texture = ExtResource("1_8t4yc")
-script = SubResource("CSharpScript_8t4yc")
 
 [node name="Timer" type="Timer" parent="."]
 

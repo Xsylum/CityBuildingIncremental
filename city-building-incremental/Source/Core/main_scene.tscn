@@ -1,19 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq1rmfy55gg2m"]
+[gd_scene load_steps=9 format=3 uid="uid://cq1rmfy55gg2m"]
 
 [ext_resource type="PackedScene" uid="uid://dfgxxfh7jlx76" path="res://Source/Levels/LevelObjects/GridGraph.tscn" id="1_447ir"]
 [ext_resource type="Script" uid="uid://bksioxjtbyw5o" path="res://Source/Core/MainScene.cs" id="1_henb1"]
 [ext_resource type="PackedScene" uid="uid://cxawipnhqj5at" path="res://Source/Core/Systems/ResourceManager.tscn" id="2_bpmr0"]
+[ext_resource type="PackedScene" uid="uid://buxbww6jo5hba" path="res://Source/Core/Systems/ConstructionManager.tscn" id="3_sj7h2"]
 [ext_resource type="PackedScene" uid="uid://ckenafwgul6gd" path="res://Source/HUDs/city_building_hud.tscn" id="4_henb1"]
+[ext_resource type="PackedScene" uid="uid://da65y6gkl3knp" path="res://Source/Gameplay/Buildings/Farm_Building.tscn" id="4_k37fp"]
+[ext_resource type="PackedScene" uid="uid://bulh7sphmb74" path="res://Source/Gameplay/Buildings/Quarry_Building.tscn" id="5_3u5u3"]
+[ext_resource type="Script" uid="uid://c8yfajy7r6ejo" path="res://Source/HUDs/ConstructionOptionButton.cs" id="5_bpmr0"]
 
-[node name="MainScene" type="Node" node_paths=PackedStringArray("resourceManager")]
+[node name="MainScene" type="Node" node_paths=PackedStringArray("resourceManager", "constructionManager", "buildingGrid")]
 process_mode = 3
 script = ExtResource("1_henb1")
 resourceManager = NodePath("Systems/ResourceManager")
+constructionManager = NodePath("Systems/ConstructionManager")
+buildingGrid = NodePath("World/LevelRoot/GridGraph")
 
 [node name="Systems" type="Node" parent="."]
 
-[node name="ResourceManager" parent="Systems" node_paths=PackedStringArray("GoldValueLabel") instance=ExtResource("2_bpmr0")]
-GoldValueLabel = NodePath("../../HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer/GoldValue")
+[node name="ResourceManager" parent="Systems" node_paths=PackedStringArray("GoldValueLabel", "WoodValueLabel", "StoneValueLabel", "FoodValueLabel", "ResearchValueLabel") instance=ExtResource("2_bpmr0")]
+GoldValueLabel = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer/GoldValue")
+WoodValueLabel = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer2/WoodValue")
+StoneValueLabel = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer3/StoneValue")
+FoodValueLabel = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer4/FoodValue")
+ResearchValueLabel = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer5/ResearchValue")
+
+[node name="ConstructionManager" parent="Systems" node_paths=PackedStringArray("buildingMenu", "buildingOption", "constructButton") instance=ExtResource("3_sj7h2")]
+buildingMenu = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu")
+buildingOption = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu/MarginContainer/VBoxContainer/OptionButton")
+constructButton = NodePath("../../HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu/MarginContainer/VBoxContainer/Button")
+farmScene = ExtResource("4_k37fp")
+quarryScene = ExtResource("5_3u5u3")
 
 [node name="World" type="Node2D" parent="."]
 process_mode = 1
@@ -42,72 +59,118 @@ layer = 10
 layout_mode = 3
 anchors_preset = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HudLayer/HudRoot"]
 layout_mode = 0
-offset_right = 46.0
-offset_bottom = 23.0
+offset_right = 458.0
+offset_bottom = 653.0
+ratio = 0.7
+
+[node name="Control" type="Control" parent="HudLayer/HudRoot/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="ResourceCounts" type="MarginContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control"]
+layout_mode = 0
+offset_right = 457.09998
+offset_bottom = 653.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Gold:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "0"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="WoodLabel" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Wood:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="WoodValue" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "0"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="StoneLabel" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "Stone:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="StoneValue" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "0"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="FoodLabel" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "Food:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="FoodValue" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "0"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer"]
 layout_mode = 2
 
-[node name="GoldLabel" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ResearchLabel" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 text = "Research:"
 
-[node name="GoldValue" type="Label" parent="HudLayer/HudRoot/MarginContainer/VBoxContainer/HBoxContainer5"]
+[node name="ResearchValue" type="Label" parent="HudLayer/HudRoot/AspectRatioContainer/Control/ResourceCounts/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 text = "0"
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_bottom = 653.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 35
+metadata/_edit_use_anchors_ = true
+
+[node name="BuildingMenu" type="PanelContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("5_bpmr0")
+buildings = Array[String](["farm", "quarry"])
+
+[node name="Button" type="Button" parent="HudLayer/HudRoot/AspectRatioContainer/Control/MarginContainer/BuildingMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Build"
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 process_mode = 2

@@ -4,6 +4,9 @@ using System;
 public partial class MainScene : Node
 {
 	[Export] public ResourceManager resourceManager;
+	[Export] public ConstructionManager constructionManager;
+
+	[Export] public GridGraph buildingGrid;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

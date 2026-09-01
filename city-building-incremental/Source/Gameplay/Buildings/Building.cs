@@ -7,6 +7,7 @@ public partial class Building : Node2D
 	private BuildingDefinition _runtimeDefinition;
 
 	[Export] public Timer ResourceTimer;
+	[Export] public ProgressBar progressBar;
 
 	[Signal]
 	public delegate void ResourceOutputEventHandler(Godot.Collections.Array<MaterialOutput> resourceDelta);
@@ -23,6 +24,11 @@ public partial class Building : Node2D
 		ResourceTimer.Start();
 		ResourceTimer.Timeout += OnResourceTimeOut;
 	}
+
+    public override void _Process(double delta)
+    {
+        progressBar.Value = (1 - ResourceTimer.TimeLeft / ResourceTimer.WaitTime) * 100;
+    }
 
 	// TODO: can create methods like "ApplyProductionMultiplier" to increase the _runtimeDefinition values
 
