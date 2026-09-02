@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnwgvy3mc4yr5"]
+
+[ext_resource type="Script" uid="uid://dwkrfkjr8hqqo" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/ResourceCollectionButtons.cs" id="1_t36se"]
+[ext_resource type="Script" uid="uid://d1lkw41cbdwii" path="res://Source/HUDs/GameInfoHuds/CollectionButton.cs" id="2_lvbla"]
+
+[node name="ResourceCollectionButtons" type="PanelContainer" node_paths=PackedStringArray("collectionButtons")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource("1_t36se")
+collectionButtons = [NodePath("MarginContainer/GridContainer/WoodButton"), NodePath("MarginContainer/GridContainer/StoneButton"), NodePath("MarginContainer/GridContainer/GoldButton"), NodePath("MarginContainer/GridContainer/FoodButton"), NodePath("MarginContainer/GridContainer/ResearchButton")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="WoodButton" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gather Wood"
+script = ExtResource("2_lvbla")
+matType = 1
+
+[node name="StoneButton" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gather Stone"
+script = ExtResource("2_lvbla")
+matType = 2
+
+[node name="GoldButton" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gather Gold"
+script = ExtResource("2_lvbla")
+
+[node name="FoodButton" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gather Food
+"
+script = ExtResource("2_lvbla")
+matType = 3
+
+[node name="ResearchButton" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gather Research"
+script = ExtResource("2_lvbla")
+matType = 4

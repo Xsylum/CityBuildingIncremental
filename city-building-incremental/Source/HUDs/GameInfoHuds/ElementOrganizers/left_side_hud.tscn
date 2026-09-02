@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgwdc4fb6od3q"]
+
+[ext_resource type="Script" uid="uid://fpsywhuyekrj" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/LeftSideHud.cs" id="1_jlm1i"]
+[ext_resource type="PackedScene" uid="uid://damo75bh32hbq" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/Resource_Counts_HUD.tscn" id="2_a25g3"]
+[ext_resource type="PackedScene" uid="uid://c7qi5tmjlevye" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/Grid_Management_HUD.tscn" id="3_85bke"]
+[ext_resource type="PackedScene" uid="uid://dnwgvy3mc4yr5" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/resource_collection_buttons.tscn" id="3_a25g3"]
+
+[node name="LeftSideHUD" type="Control" node_paths=PackedStringArray("resourceCountsHud", "gridManagementHud", "resourceCollectionButtons")]
+layout_mode = 3
+anchor_right = 0.4
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_jlm1i")
+resourceCountsHud = NodePath("AnchoringControl/VBoxContainer/ResourceCounts")
+gridManagementHud = NodePath("AnchoringControl/GridManagementMenu")
+resourceCollectionButtons = NodePath("AnchoringControl/VBoxContainer/ResourceCollectionButtons")
+
+[node name="AnchoringControl" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.600006
+offset_right = 457.2
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AnchoringControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceCounts" parent="AnchoringControl/VBoxContainer" instance=ExtResource("2_a25g3")]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ResourceCollectionButtons" parent="AnchoringControl/VBoxContainer" instance=ExtResource("3_a25g3")]
+layout_mode = 2
+
+[node name="GridManagementMenu" parent="AnchoringControl" instance=ExtResource("3_85bke")]
+layout_mode = 2
+size_flags_horizontal = 3

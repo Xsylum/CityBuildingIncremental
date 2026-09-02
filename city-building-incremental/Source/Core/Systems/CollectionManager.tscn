@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6w0kugs0340o"]
+
+[ext_resource type="Script" uid="uid://bye04jnhcr5xm" path="res://Source/Core/Systems/CollectionManager.cs" id="1_mauam"]
+
+[node name="CollectionManager" type="Node"]
+script = ExtResource("1_mauam")

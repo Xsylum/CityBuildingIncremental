@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://damo75bh32hbq"]
 
-[ext_resource type="Script" uid="uid://b2ig1kbig8osf" path="res://Source/HUDs/GameInfoHuds/ResourceCountsHud.cs" id="1_qs3ah"]
+[ext_resource type="Script" uid="uid://b2ig1kbig8osf" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/ResourceCountsHud.cs" id="1_qs3ah"]
 
 [node name="ResourceCounts" type="MarginContainer" node_paths=PackedStringArray("GoldValueLabel", "WoodValueLabel", "StoneValueLabel", "FoodValueLabel", "ResearchValueLabel")]
 offset_right = 457.09998

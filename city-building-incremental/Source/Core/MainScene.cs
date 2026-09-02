@@ -5,6 +5,7 @@ public partial class MainScene : Node
 {
 	[Export] public ResourceManager resourceManager;
 	[Export] public ConstructionManager constructionManager;
+	[Export] public CollectionManager collectionManager;
 
 	[Export] public GridGraph buildingGrid;
 

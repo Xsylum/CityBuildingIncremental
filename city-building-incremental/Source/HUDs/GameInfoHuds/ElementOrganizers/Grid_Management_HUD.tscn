@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7qi5tmjlevye"]
 
 [ext_resource type="Script" uid="uid://c8yfajy7r6ejo" path="res://Source/HUDs/ConstructionOptionButton.cs" id="1_deoup"]
-[ext_resource type="Script" uid="uid://bdaalmiy2xqt0" path="res://Source/HUDs/GameInfoHuds/GridManagementHud.cs" id="1_fdva5"]
+[ext_resource type="Script" uid="uid://bdaalmiy2xqt0" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/GridManagementHud.cs" id="1_fdva5"]
 
 [node name="GridManagementMenu" type="MarginContainer" node_paths=PackedStringArray("selectedTileLabel", "constructionMenu", "constructionBuildingOption", "constructButton")]
 anchors_preset = 1

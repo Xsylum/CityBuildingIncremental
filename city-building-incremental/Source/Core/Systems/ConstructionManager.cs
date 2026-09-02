@@ -5,7 +5,7 @@ public partial class ConstructionManager : Node
 {
 	public int selectedGridIndex = -1;
 
-	[Export] public TopLevelHud Hud;
+	[Export] public LeftSideHud Hud;
 
 	[Export] public PackedScene farmScene;
 	[Export] public PackedScene quarryScene;

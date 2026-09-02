@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
-public partial class TopLevelHud : AspectRatioContainer
+public partial class LeftSideHud : Control
 {
 	[Export] public ResourceCountsHud resourceCountsHud;
 	[Export] public GridManagementHud gridManagementHud;
+	[Export] public ResourceCollectionButtons resourceCollectionButtons;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
