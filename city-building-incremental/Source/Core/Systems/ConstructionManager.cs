@@ -3,14 +3,9 @@ using System;
 
 public partial class ConstructionManager : Node
 {
-	[Export] public bool startingMenuVisible = false;
-
 	public int selectedGridIndex = -1;
 
-	[Export] public Control buildingMenu;
-
-	[Export] public OptionButton buildingOption;
-	[Export] public Button constructButton;
+	[Export] public TopLevelHud Hud;
 
 	[Export] public PackedScene farmScene;
 	[Export] public PackedScene quarryScene;
@@ -18,9 +13,9 @@ public partial class ConstructionManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
-        buildingMenu.Visible = startingMenuVisible;
+        Hud.gridManagementHud.Hide();
 
-		constructButton.Pressed += ConstructBuilding;
+		Hud.gridManagementHud.constructButton.Pressed += ConstructBuilding;
     }
 
 	public void RegisterGraphTile(GraphTile gt)
@@ -30,9 +25,10 @@ public partial class ConstructionManager : Node
 
 	public void SelectTile(int index)
     {
-		GD.Print("bing");
+		var coords = GetNode<MainScene>("../..").buildingGrid.GetCoordinatesByIndex(index);
+		Hud.gridManagementHud.selectedTileLabel.Text = $"({coords.Item1}, {coords.Item2})"; 
         selectedGridIndex = index;
-		buildingMenu.Visible = true;
+		Hud.gridManagementHud.Show();
     }
 
 	public void ConstructBuilding()
@@ -40,7 +36,7 @@ public partial class ConstructionManager : Node
         if (selectedGridIndex == -1)
 			return;
 		
-		int optionIndex = buildingOption.Selected;
+		int optionIndex = Hud.gridManagementHud.constructionBuildingOption.Selected;
 
 		if (optionIndex < 0)
         {
@@ -48,7 +44,7 @@ public partial class ConstructionManager : Node
 			return;
         }
 
-		string optionString = buildingOption.GetItemText(optionIndex);
+		string optionString =  Hud.gridManagementHud.constructionBuildingOption.GetItemText(optionIndex);
 
 		PackedScene buildingScene = null;
 
@@ -66,7 +62,8 @@ public partial class ConstructionManager : Node
         {
             GetNode<MainScene>("../..").buildingGrid.AddBuilding(selectedGridIndex, buildingScene);
 			selectedGridIndex = -1;
-			buildingMenu.Visible = false;
+			Hud.gridManagementHud.selectedTileLabel.Text = "";
+			Hud.gridManagementHud.Hide();
         }
 		else
         {

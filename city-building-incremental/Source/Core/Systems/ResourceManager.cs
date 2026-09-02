@@ -6,11 +6,7 @@ public partial class ResourceManager : Node
 {
 	Dictionary<MaterialType, float> resources = new();
 
-	[Export] public Label GoldValueLabel;
-	[Export] public Label WoodValueLabel;
-	[Export] public Label StoneValueLabel;
-	[Export] public Label FoodValueLabel;
-	[Export] public Label ResearchValueLabel;
+	[Export] public TopLevelHud Hud;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -44,24 +40,7 @@ public partial class ResourceManager : Node
     {
         foreach (KeyValuePair<MaterialType, float> resourcePair in resources)
         {
-            switch (resourcePair.Key)
-            {
-                case MaterialType.Gold:
-					GoldValueLabel.Text = resourcePair.Value.ToString();
-					break;
-				case MaterialType.Wood:
-					WoodValueLabel.Text = resourcePair.Value.ToString();
-					break;
-				case MaterialType.Stone:
-					StoneValueLabel.Text = resourcePair.Value.ToString();
-					break;
-				case MaterialType.Food:
-					FoodValueLabel.Text = resourcePair.Value.ToString();
-					break;
-				case MaterialType.Research:
-					ResearchValueLabel.Text = resourcePair.Value.ToString();
-					break;
-            }
+            Hud.UpdateResourceLabel(resourcePair.Key, resourcePair.Value);
         }
     }
 }

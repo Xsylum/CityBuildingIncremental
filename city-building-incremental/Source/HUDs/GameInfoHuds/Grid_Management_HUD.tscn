@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7qi5tmjlevye"]
+
+[ext_resource type="Script" uid="uid://c8yfajy7r6ejo" path="res://Source/HUDs/ConstructionOptionButton.cs" id="1_deoup"]
+[ext_resource type="Script" uid="uid://bdaalmiy2xqt0" path="res://Source/HUDs/GameInfoHuds/GridManagementHud.cs" id="1_fdva5"]
+
+[node name="GridManagementMenu" type="MarginContainer" node_paths=PackedStringArray("selectedTileLabel", "constructionMenu", "constructionBuildingOption", "constructButton")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_bottom = 653.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 0
+script = ExtResource("1_fdva5")
+selectedTileLabel = NodePath("VBoxContainer/SelectedGridInfo/MarginContainer/SelectedTileLabel")
+constructionMenu = NodePath("VBoxContainer/BuildingMenu/ConstructionMenu")
+constructionBuildingOption = NodePath("VBoxContainer/BuildingMenu/ConstructionMenu/VBoxContainer/OptionButton")
+constructButton = NodePath("VBoxContainer/BuildingMenu/ConstructionMenu/VBoxContainer/ConstructButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SelectedGridInfo" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/SelectedGridInfo"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SelectedTileLabel" type="Label" parent="VBoxContainer/SelectedGridInfo/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="BuildingMenu" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ConstructionMenu" type="MarginContainer" parent="VBoxContainer/BuildingMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BuildingMenu/ConstructionMenu"]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/BuildingMenu/ConstructionMenu/VBoxContainer"]
+layout_mode = 2
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("1_deoup")
+buildings = Array[String](["farm", "quarry"])
+
+[node name="ConstructButton" type="Button" parent="VBoxContainer/BuildingMenu/ConstructionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Build"
+
+[node name="ManagerialMenu" type="MarginContainer" parent="VBoxContainer/BuildingMenu"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BuildingMenu/ManagerialMenu"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/BuildingMenu/ManagerialMenu/VBoxContainer"]
+layout_mode = 2
+item_count = 1
+popup/item_0/id = 0
+script = ExtResource("1_deoup")
+buildings = Array[String](["farm", "quarry"])
+
+[node name="Button" type="Button" parent="VBoxContainer/BuildingMenu/ManagerialMenu/VBoxContainer"]
+layout_mode = 2
+text = "Build"

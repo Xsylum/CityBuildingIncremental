@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://damo75bh32hbq"]
+
+[ext_resource type="Script" uid="uid://b2ig1kbig8osf" path="res://Source/HUDs/GameInfoHuds/ResourceCountsHud.cs" id="1_qs3ah"]
+
+[node name="ResourceCounts" type="MarginContainer" node_paths=PackedStringArray("GoldValueLabel", "WoodValueLabel", "StoneValueLabel", "FoodValueLabel", "ResearchValueLabel")]
+offset_right = 457.09998
+offset_bottom = 653.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_qs3ah")
+GoldValueLabel = NodePath("VBoxContainer/HBoxContainer/GoldValue")
+WoodValueLabel = NodePath("VBoxContainer/HBoxContainer2/WoodValue")
+StoneValueLabel = NodePath("VBoxContainer/HBoxContainer3/StoneValue")
+FoodValueLabel = NodePath("VBoxContainer/HBoxContainer4/FoodValue")
+ResearchValueLabel = NodePath("VBoxContainer/HBoxContainer5/ResearchValue")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="GoldValue" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="WoodLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Wood:"
+
+[node name="WoodValue" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StoneLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Stone:"
+
+[node name="StoneValue" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FoodLabel" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Food:"
+
+[node name="FoodValue" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResearchLabel" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Research:"
+
+[node name="ResearchValue" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "0"

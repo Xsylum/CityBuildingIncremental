@@ -78,6 +78,14 @@ public partial class GridGraph : Node2D
         return buildingList[index];
     }
 
+	public (int, int) GetCoordinatesByIndex(int index)
+    {
+        int y = (int)Mathf.Floor(index / width);
+		int x = index - y * width;
+
+		return (x, y);
+    }
+
 	// public void OnTileClicked(int index)
     // {
     //     var b = buildingScene.Instantiate<Building>();
