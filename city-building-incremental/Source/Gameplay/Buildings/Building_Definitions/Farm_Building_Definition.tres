@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingDefinition" load_steps=4 format=3 uid="uid://cb070hup8e1ib"]
+[gd_resource type="Resource" script_class="BuildingDefinition" load_steps=7 format=3 uid="uid://cb070hup8e1ib"]
 
 [ext_resource type="Script" uid="uid://bhxwn4negegi0" path="res://Source/Gameplay/Buildings/MaterialOutput.cs" id="1_v27b7"]
 [ext_resource type="Script" uid="uid://cyn0cbici7ebj" path="res://Source/Gameplay/Buildings/BuildingDefinition.cs" id="2_khhqu"]
@@ -9,8 +9,26 @@ resource = 3
 amount = 5.0
 metadata/_custom_type_script = "uid://bhxwn4negegi0"
 
+[sub_resource type="Resource" id="Resource_v27b7"]
+script = ExtResource("1_v27b7")
+amount = 2.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_khhqu"]
+script = ExtResource("1_v27b7")
+resource = 1
+amount = 10.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_k3sdw"]
+script = ExtResource("1_v27b7")
+resource = 2
+amount = 1.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
 [resource]
 script = ExtResource("2_khhqu")
 BuildingName = "Farm"
 Outputs = Array[ExtResource("1_v27b7")]([SubResource("Resource_3nso4")])
+constructionCosts = Array[ExtResource("1_v27b7")]([SubResource("Resource_v27b7"), SubResource("Resource_khhqu"), SubResource("Resource_k3sdw")])
 metadata/_custom_type_script = "uid://cyn0cbici7ebj"

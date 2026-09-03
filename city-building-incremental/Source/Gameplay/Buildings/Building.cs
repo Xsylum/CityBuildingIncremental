@@ -1,8 +1,10 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Building : Node2D
 {
+
 	[Export] public BuildingDefinition Definition;
 	private BuildingDefinition _runtimeDefinition;
 

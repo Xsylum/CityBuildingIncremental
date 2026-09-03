@@ -24,16 +24,44 @@ public partial class ResourceManager : Node
 
 	public void RegisterNewBuilding(Building b)
     {
-        b.ResourceOutput += ChangeResources;
+        b.ResourceOutput += AddResources;
     }
 
-	public void ChangeResources(Godot.Collections.Array<MaterialOutput> newResources)
+    public bool CanAfford(Godot.Collections.Array<MaterialOutput> costs)
     {
+        foreach (MaterialOutput mo in costs)
+        {
+            if (resources[mo.resource] < mo.amount)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public float GetResourceCount(MaterialType type)
+    {
+        return resources[type];
+    }
+
+	public void AddResources(Godot.Collections.Array<MaterialOutput> newResources)
+    {
+        // TODO: should probably have something so if any are negative below 0 (unless the resource allows debt) that nothing is changed? Acts as an extra safeguard
 		foreach (MaterialOutput o in newResources)
         {
             resources[o.resource] += o.amount;
         }
 		UpdateResourceLabels();
+    }
+
+    public void SpendResources(Godot.Collections.Array<MaterialOutput> spentResources)
+    {
+        foreach (MaterialOutput o in spentResources)
+        {
+            resources[o.resource] -= o.amount;
+        }
+        UpdateResourceLabels();
     }
 
 	public void UpdateResourceLabels()

@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="BuildingDefinition" load_steps=9 format=3 uid="uid://dtc7kedtum4vr"]
+
+[ext_resource type="Script" uid="uid://bhxwn4negegi0" path="res://Source/Gameplay/Buildings/MaterialOutput.cs" id="1_doyl7"]
+[ext_resource type="Script" uid="uid://cyn0cbici7ebj" path="res://Source/Gameplay/Buildings/BuildingDefinition.cs" id="2_aioq7"]
+
+[sub_resource type="Resource" id="Resource_r703d"]
+script = ExtResource("1_doyl7")
+resource = 2
+amount = 1.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_vdcer"]
+script = ExtResource("1_doyl7")
+amount = 0.18
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_vbuqw"]
+script = ExtResource("1_doyl7")
+amount = 10.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_rkwt8"]
+script = ExtResource("1_doyl7")
+resource = 1
+amount = 5.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_bwte3"]
+script = ExtResource("1_doyl7")
+resource = 3
+amount = 10.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[sub_resource type="Resource" id="Resource_667j8"]
+script = ExtResource("1_doyl7")
+resource = 2
+amount = 3.0
+metadata/_custom_type_script = "uid://bhxwn4negegi0"
+
+[resource]
+script = ExtResource("2_aioq7")
+BuildingName = "quarry"
+TimerAmount = 3.0
+Outputs = Array[ExtResource("1_doyl7")]([SubResource("Resource_r703d"), SubResource("Resource_vdcer")])
+constructionCosts = Array[ExtResource("1_doyl7")]([SubResource("Resource_vbuqw"), SubResource("Resource_rkwt8"), SubResource("Resource_bwte3"), SubResource("Resource_667j8")])
+metadata/_custom_type_script = "uid://cyn0cbici7ebj"

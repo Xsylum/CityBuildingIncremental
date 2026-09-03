@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq1rmfy55gg2m"]
+[gd_scene load_steps=12 format=3 uid="uid://cq1rmfy55gg2m"]
 
 [ext_resource type="PackedScene" uid="uid://dfgxxfh7jlx76" path="res://Source/Levels/LevelObjects/GridGraph.tscn" id="1_447ir"]
 [ext_resource type="Script" uid="uid://bksioxjtbyw5o" path="res://Source/Core/MainScene.cs" id="1_henb1"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ckenafwgul6gd" path="res://Source/HUDs/city_building_hud.tscn" id="4_henb1"]
 [ext_resource type="PackedScene" uid="uid://da65y6gkl3knp" path="res://Source/Gameplay/Buildings/Farm_Building.tscn" id="4_k37fp"]
 [ext_resource type="PackedScene" uid="uid://bulh7sphmb74" path="res://Source/Gameplay/Buildings/Quarry_Building.tscn" id="5_3u5u3"]
+[ext_resource type="Resource" uid="uid://cb070hup8e1ib" path="res://Source/Gameplay/Buildings/Building_Definitions/Farm_Building_Definition.tres" id="7_8j5ky"]
+[ext_resource type="Resource" uid="uid://dtc7kedtum4vr" path="res://Source/Gameplay/Buildings/Building_Definitions/Quarry_Building_Definition.tres" id="8_bp3qx"]
 [ext_resource type="PackedScene" uid="uid://bgwdc4fb6od3q" path="res://Source/HUDs/GameInfoHuds/ElementOrganizers/left_side_hud.tscn" id="8_sj7h2"]
 
 [node name="MainScene" type="Node" node_paths=PackedStringArray("resourceManager", "constructionManager", "collectionManager", "buildingGrid")]
@@ -26,10 +28,13 @@ resourceManager = NodePath("../ResourceManager")
 [node name="ResourceManager" parent="Systems" node_paths=PackedStringArray("Hud") instance=ExtResource("2_bpmr0")]
 Hud = NodePath("../../HudLayer/HudRoot/LeftSideHUD")
 
-[node name="ConstructionManager" parent="Systems" node_paths=PackedStringArray("Hud") instance=ExtResource("3_sj7h2")]
+[node name="ConstructionManager" parent="Systems" node_paths=PackedStringArray("Hud", "resourceManager") instance=ExtResource("3_sj7h2")]
 Hud = NodePath("../../HudLayer/HudRoot/LeftSideHUD")
 farmScene = ExtResource("4_k37fp")
 quarryScene = ExtResource("5_3u5u3")
+farmDefinition = ExtResource("7_8j5ky")
+quarryDefinition = ExtResource("8_bp3qx")
+resourceManager = NodePath("../ResourceManager")
 
 [node name="World" type="Node2D" parent="."]
 process_mode = 1

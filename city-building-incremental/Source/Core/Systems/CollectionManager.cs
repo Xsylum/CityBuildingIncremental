@@ -52,6 +52,6 @@ public partial class CollectionManager : Node
         }
 		
 		var collectionOutput = new MaterialOutput(resourceType, baseAmount * multiplier);
-		resourceManager.ChangeResources([collectionOutput]);
+		resourceManager.AddResources([collectionOutput]);
     }
 }
