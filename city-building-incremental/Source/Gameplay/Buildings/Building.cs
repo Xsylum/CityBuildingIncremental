@@ -7,12 +7,20 @@ public partial class Building : Node2D
 
 	[Export] public BuildingDefinition Definition;
 	private BuildingDefinition _runtimeDefinition;
-
-	[Export] public Timer ResourceTimer;
-	[Export] public ProgressBar progressBar;
+	public BuildingDefinition RuntimeDefinition => _runtimeDefinition;
 
 	[Signal]
 	public delegate void ResourceOutputEventHandler(Godot.Collections.Array<MaterialOutput> resourceDelta);
+
+	public T GetComponent<T>() where T : class
+    {
+        foreach (Node child in GetChildren())
+        {
+            if (child is T match)
+				return match;
+        }
+		return null;
+    }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -21,22 +29,16 @@ public partial class Building : Node2D
 
 		_runtimeDefinition = (BuildingDefinition)Definition.Duplicate(true);
 
-		ResourceTimer.WaitTime = _runtimeDefinition.TimerAmount;
-
-		ResourceTimer.Start();
-		ResourceTimer.Timeout += OnResourceTimeOut;
+		foreach(Node child in GetChildren())
+        {
+            if (child is IBuildingComponent component) {
+				component.Initialize(this);
+			}
+        }
 	}
 
-    public override void _Process(double delta)
+	public void EmitResourceOutput(Godot.Collections.Array<MaterialOutput> outputs)
     {
-        progressBar.Value = (1 - ResourceTimer.TimeLeft / ResourceTimer.WaitTime) * 100;
+        EmitSignal(SignalName.ResourceOutput, outputs);
     }
-
-	// TODO: can create methods like "ApplyProductionMultiplier" to increase the _runtimeDefinition values
-
-	public void OnResourceTimeOut()
-	{
-		GD.Print("dong");
-		EmitSignal(SignalName.ResourceOutput, _runtimeDefinition.Outputs);
-	}
 }

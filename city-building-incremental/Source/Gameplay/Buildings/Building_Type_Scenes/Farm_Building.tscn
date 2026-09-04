@@ -1,15 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://da65y6gkl3knp"]
+[gd_scene load_steps=5 format=3 uid="uid://da65y6gkl3knp"]
 
 [ext_resource type="Texture2D" uid="uid://uc6gm135b31d" path="res://icon.svg" id="1_8t4yc"]
 [ext_resource type="Script" uid="uid://bdtxfg87101mq" path="res://Source/Gameplay/Buildings/Building.cs" id="1_miga6"]
 [ext_resource type="Resource" uid="uid://cb070hup8e1ib" path="res://Source/Gameplay/Buildings/Building_Definitions/Farm_Building_Definition.tres" id="2_mwn1w"]
+[ext_resource type="PackedScene" uid="uid://bd6dhegqhhs33" path="res://Source/Gameplay/Buildings/BuildingComponents/ProductionComponent.tscn" id="4_42fpr"]
 
-[node name="Farm_Building" type="Node2D" node_paths=PackedStringArray("ResourceTimer", "progressBar")]
+[node name="Farm_Building" type="Node2D"]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_miga6")
 Definition = ExtResource("2_mwn1w")
-ResourceTimer = NodePath("Timer")
-progressBar = NodePath("ProgressBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0.20392157, 1)
@@ -23,3 +22,7 @@ offset_left = -50.0
 offset_top = -90.0
 offset_right = 50.0
 offset_bottom = -63.0
+
+[node name="ProductionComponent" parent="." node_paths=PackedStringArray("ResourceTimer", "OutputProgressBar") instance=ExtResource("4_42fpr")]
+ResourceTimer = NodePath("../Timer")
+OutputProgressBar = NodePath("../ProgressBar")

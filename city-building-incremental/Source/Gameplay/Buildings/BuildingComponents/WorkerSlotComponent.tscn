@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwukt7cahxb4t"]
+
+[ext_resource type="Script" uid="uid://cdav7wgoyba1j" path="res://Source/Gameplay/Buildings/BuildingComponents/WorkerSlotComponent.cs" id="1_llqr7"]
+
+[node name="WorkerSlotComponent" type="Node"]
+script = ExtResource("1_llqr7")
